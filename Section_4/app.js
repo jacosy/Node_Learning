@@ -32,3 +32,5 @@ yargs.command('read', 'Read a note', function () {
 yargs.command('list', 'List out all the notes', function () {
     console.log('list out all the notes!');
 }).help().argv;
+
+console.log(yargs.argv);
