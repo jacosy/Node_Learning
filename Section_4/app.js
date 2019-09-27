@@ -35,8 +35,20 @@ yargs.command('add', 'Add a new note', function (yargs) {
 });
 
 // Remove Command
-yargs.command('remove', 'Remove a note', function () {
-    console.log('remove one note!');
+yargs.command('remove', 'Remove a note', function (yargs) {
+    return yargs.option('title', {
+        describe: 'The title needs to be removed',
+        demandOption: true,
+        type: 'string'
+    });
+}, function (argv) {
+    const title = argv.title;
+    const result = note.removeNote(title);
+    if (result) {
+        console.log(chalk.bgGreen(`The Title: "${title}" was removed successfully!`));
+    } else {
+        console.log(chalk.bgRed(`The Title: "${title}" was not found!`));
+    }
 });
 
 // Read Command
