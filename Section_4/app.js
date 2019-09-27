@@ -17,7 +17,7 @@ const note = require('./note');
 yargs.command('add', 'Add a new note', function (yargs) {
     return yargs.option('title', {
         describe: 'Note Title',
-        demandOption: true,        
+        demandOption: true,
         type: 'string'
     }).option('body', {
         describe: 'Note Body',
@@ -25,8 +25,13 @@ yargs.command('add', 'Add a new note', function (yargs) {
         type: 'string'
     });
 }, function (argv) {
-    //console.log('add a new note!', argv);
-    console.log(`Title: ${argv.title}\nBody: ${argv.body}`);
+    const title = argv.title;
+    const body = argv.body;
+    if (note.addNote(title, body)) {
+        console.log(`Added the Note successfully.\nTitle: ${title}, Body: ${body}`);
+    } else {
+        console.log(`Note Title was Taken!`);
+    }
 });
 
 // Remove Command
