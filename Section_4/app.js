@@ -52,8 +52,14 @@ yargs.command('remove', 'Remove a note', function (yargs) {
 });
 
 // Read Command
-yargs.command('read', 'Read a note', function () {
-    console.log('read one note!');
+yargs.command('read', 'Read a note', function (yargs) {
+    return yargs.option('title', {
+        describe: 'The title of the note you want to search',
+        demandOption: true,
+        type: 'string'
+    })
+}, function (argv) {
+    note.readNote(argv.title);
 });
 
 // List Command
