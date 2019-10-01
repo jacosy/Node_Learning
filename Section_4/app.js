@@ -58,7 +58,8 @@ yargs.command('read', 'Read a note', function () {
 
 // List Command
 yargs.command('list', 'List out all the notes', function () {
-    console.log('list out all the notes!');
+    const noteTitls = note.listNotes();
+    console.log(chalk.black.bold.bgWhite(noteTitls));
 });
 
 yargs.argv;

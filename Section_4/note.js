@@ -20,6 +20,11 @@ function loadNotes() {
     }
 }
 
+function listNotes() {
+    const notes = loadNotes();    
+    return  notes.reduce((pre, cur) => pre += cur.title + '\n', 'Your notes:\n');    
+}
+
 function append(msg) {
     fs.appendFile(fileName, msg);
 }
@@ -44,7 +49,7 @@ function addNote(title, body) {
 function removeNote(title) {
     const notes = loadNotes();
     const remainNotes = notes.filter(note => note.title !== title);
-    saveNotes(remainNotes);    
+    saveNotes(remainNotes);
     return notes.length !== remainNotes.length;
 }
 
@@ -53,4 +58,4 @@ function saveNotes(notes) {
     fs.writeFileSync(fileName, dataJSON);
 }
 
-module.exports = { addNote, removeNote, getNotes };
+module.exports = { addNote, removeNote, listNotes };
